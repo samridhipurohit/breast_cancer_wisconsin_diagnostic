@@ -1,0 +1,24 @@
+here::i_am("code/01_make_table.R")
+
+library(readr)
+library(dplyr)
+library(here)
+
+#Load data (CSV version)
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+
+#Select key features
+features <- c("radius_mean", "texture_mean", "perimeter_mean", "area_mean", "smoothness_mean")
+
+#Summarize by diagnosis
+summary_table <- data %>%
+  group_by(diagnosis) %>%
+  summarise(across(all_of(features),
+                   list(mean = ~mean(as.numeric(.), na.rm = TRUE),
+                        sd = ~sd(as.numeric(.), na.rm = TRUE)),
+                   .names = "{.col}_{.fn}"))
+
+#Save the summary table as CSV
+write_csv(summary_table, here("output", "summary_table.csv"))
+
+message("Summary table saved: output/summary_table.csv")

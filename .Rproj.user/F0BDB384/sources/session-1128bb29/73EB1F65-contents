@@ -1,0 +1,24 @@
+#code/01_table_script.R
+#Generates a summary table by diagnosis group
+
+library(dplyr)
+library(readr)
+
+# Load dataset
+data <- read_csv("data/breast_cancer_wisconsin.csv", show_col_types = FALSE)
+
+# Select key numeric features
+features <- c("radius_mean", "texture_mean", "perimeter_mean", "area_mean", "smoothness_mean")
+
+# Compute mean and SD by diagnosis (M=malignant, B=benign)
+summary_table <- data %>%
+  group_by(diagnosis) %>%
+  summarise(across(all_of(features),
+                   list(mean = ~mean(as.numeric(.), na.rm = TRUE),
+                        sd = ~sd(as.numeric(.), na.rm = TRUE)),
+                   .names = "{.col}_{.fn}"))
+
+# Save output table
+write_csv(summary_table, "output/summary_table.csv")
+
+message("✅ Table created: output/summary_table.csv")

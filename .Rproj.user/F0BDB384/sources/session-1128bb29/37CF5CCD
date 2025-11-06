@@ -1,0 +1,27 @@
+{
+    "id": "37CF5CCD",
+    "path": "~/Documents/Data550/breast_cancer_wisconsin_diagnostic/code/01_make_table.R",
+    "project_path": "code/01_make_table.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1762399776950.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "tempName": "Untitled3",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "23,56",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1762406441,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1762406441901,
+    "read_only": false,
+    "read_only_alternatives": []
+}

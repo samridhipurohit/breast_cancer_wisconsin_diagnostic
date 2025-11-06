@@ -1,0 +1,3 @@
+"0","#Read summary_table and figure "
+"0","summary_table <- read.csv(here::here(""output"", ""summary_table.csv""))"
+"0","figure_path <- here::here(""output"", ""figure_boxplot.png"")"

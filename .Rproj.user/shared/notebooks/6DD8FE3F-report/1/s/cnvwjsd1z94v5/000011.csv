@@ -1,0 +1,2 @@
+"0","#| fig.cap = ""Summary statistics of tumor samples"""
+"0","kable(head(summary_table), caption = ""Summary statistics of tumor samples"")"

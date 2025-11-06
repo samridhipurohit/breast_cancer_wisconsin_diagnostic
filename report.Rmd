@@ -1,0 +1,36 @@
+---
+title: "Breast Cancer Diagnostic Analysis"
+output: html_document
+---
+
+```{r, here-i-am, include = FALSE}
+#! TO DO:
+#!   add call to here::i_am
+library(here)
+library(knitr)
+here::i_am("report.Rmd")
+```
+
+```{r, load-data, include = FALSE}
+#Read summary_table and figure 
+summary_table <- read.csv(here::here("output", "summary_table.csv"))
+figure_path <- here::here("output", "figure_boxplot.png")
+```
+
+# Summary Table
+Below is a summary of the mean values of selected tumor features grouped by diagnosis.
+
+```{r, summary-table, echo = FALSE}
+kable(
+  head(summary_table),
+  caption = "Summary statistics of tumor samples"
+)
+```
+---
+
+# Boxplot Visualization
+The following figure compares the distribution of mean radius between malignant and benign tumors.
+
+```{r, figure-boxplot, echo = FALSE}
+knitr::include_graphics(here::here("output", "figure_boxplot.png"))
+```

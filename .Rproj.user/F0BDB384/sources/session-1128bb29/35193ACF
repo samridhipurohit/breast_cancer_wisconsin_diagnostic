@@ -1,0 +1,27 @@
+{
+    "id": "35193ACF",
+    "path": "~/Documents/Data550/breast_cancer_wisconsin_diagnostic/Makefile",
+    "project_path": "Makefile",
+    "type": "makefile",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1762401289090.0,
+    "source_on_save": false,
+    "relative_order": 13,
+    "properties": {
+        "tempName": "Untitled3",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "16,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1762401303,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1762401303318,
+    "read_only": false,
+    "read_only_alternatives": []
+}
