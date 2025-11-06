@@ -42,7 +42,7 @@ Only the cleaned, labeled version (`breast_cancer_wisconsin.csv`) is used in thi
 
 ------
 
-**To generate the final report:**  
+## To generate the final report:
 You can do this in two ways:
 
 1. **Using Make:**  
