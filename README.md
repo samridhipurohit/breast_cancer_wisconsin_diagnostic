@@ -41,3 +41,17 @@ Only the cleaned, labeled version (`breast_cancer_wisconsin.csv`) is used in thi
 - presents the analysis and outputs in a readable report format
 
 ------
+
+**To generate the final report:**  
+You can do this in two ways:
+
+1. **Using Make:**  
+   From the project directory, run:  
+   ```bash
+   make report.html
+   ```
+   This will automatically create the summary table, figure and compile everything into report.html.
+   
+2. **Using R Studio:**
+Open and run `code/03_render_report.R` — this will generate the same report.html file.
+----

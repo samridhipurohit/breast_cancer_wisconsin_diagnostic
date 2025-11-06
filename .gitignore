@@ -1,3 +1,7 @@
-.Rproj.user
+#Ignore macOS system files
 .DS_Store
+*/.DS_Store
+
+#Ignore RStudio project files
+.Rproj.user
 *.Rproj
