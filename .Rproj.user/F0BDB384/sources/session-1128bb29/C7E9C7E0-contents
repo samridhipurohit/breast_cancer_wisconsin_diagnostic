@@ -1,8 +1,0 @@
-#Makefile for Data550_FinalProject_BCW
-
-output/final_report.html: output/final_report.Rmd code/01_table_script.R code/02_figure_script.R data/breast_cancer_wisconsin.csv
-  Rscript -e "rmarkdown::render('output/final_report.Rmd', output_file='final_report.html')"
-
-.PHONY: clean
-clean:
-    rm -f output/*.csv output/*.png output/*.html
