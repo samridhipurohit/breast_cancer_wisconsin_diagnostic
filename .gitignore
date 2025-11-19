@@ -1,0 +1,14 @@
+# R history and session files
+.Rhistory
+.RData
+.Rproj.user/
+
+# macOS junk
+.DS_Store
+
+# renv library (do NOT upload)
+renv/library/
+renv/staging/
+
+# reports
+*.html
