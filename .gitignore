@@ -1,6 +1,22 @@
-.Rproj.user
+#RStudio temporary files
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
-*.html
+
+#Ignore all RStudio project files
 *.Rproj
+
+#MacOS junk files
+.DS_Store
+
+#Generated output and reports (Docker/Make recreate these)
+output/
+report/
+
+#renv cache (too large for GitHub)
+renv/library/
+
+#Ignore knitted HTML reports except main README
+*.html
+!README.html

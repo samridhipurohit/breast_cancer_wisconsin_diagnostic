@@ -5,7 +5,7 @@ Author: Samridhi Purohit
 
 ## Data  
 
-The dataset used for this project is the **Breast Cancer Wisconsin (Diagnostic)** dataset from the [UCI Machine Learning Repository] (https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)).
+The dataset used for this project is the **Breast Cancer Wisconsin (Diagnostic)** dataset from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)).
 
 It contains **measurements of cell nuclei** from digitized images of fine-needle aspirates of breast masses.  
 Each observation corresponds to one patient, with features describing the shape, texture and size of the cell nuclei.
@@ -77,7 +77,14 @@ will appear in your local project folder. Open this file in any web browser.
 3. **Dockerhub Link**
 The public Docker image for this project is available at:
 https://hub.docker.com/r/samridhipurohit/bcg_report
-----
+
+4. **Using Make to Run the Container**
+From the project directory, run:
+```bash
+make docker-report
+```
+
+
 
 
 
