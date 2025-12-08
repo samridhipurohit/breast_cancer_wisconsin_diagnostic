@@ -66,7 +66,7 @@ From the project directory, run:
 2. **To Generate the Report**
 From the project directory, run:
   ```bash
-  docker run -v $(pwd)/report:/project/report bcg_report
+  docker run -v $(PWD)/report:/project/report bcg_report
   ```
 After the command finishes, the file:
 ```

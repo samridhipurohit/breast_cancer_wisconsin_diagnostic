@@ -2,7 +2,7 @@
 report.html: report.Rmd output/figure_boxplot.png output/summary_table.csv
 	Rscript code/03_render_report.R
 	
-#Make report
+#Help users run make report (just to be safe)
 report: report.html
 
 #Step 1: Create summary table
