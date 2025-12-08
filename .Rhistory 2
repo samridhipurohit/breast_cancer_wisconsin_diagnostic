@@ -1,0 +1,512 @@
+#Render the report from R Markdown to HTML
+render(
+input = here("report.Rmd"),
+output_file = here("report.html")
+)
+message("Report rendered successfully: report.html")
+ls
+#Select key features
+features <- c("radius_mean", "texture_mean", "perimeter_mean", "area_mean", "smoothness_mean")
+#Summarize by diagnosis
+summary_table <- data %>%
+group_by(diagnosis) %>%
+summarise(across(all_of(features),
+list(mean = ~mean(as.numeric(.), na.rm = TRUE),
+sd = ~sd(as.numeric(.), na.rm = TRUE)),
+.names = "{.col}_{.fn}"))
+here::i_am("code/01_make_table.R")
+library(readr)
+library(dplyr)
+library(here)
+#Load data (CSV version)
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Select key features
+features <- c("radius_mean", "texture_mean", "perimeter_mean", "area_mean", "smoothness_mean")
+#Summarize by diagnosis
+summary_table <- data %>%
+group_by(diagnosis) %>%
+summarise(across(all_of(features),
+list(mean = ~mean(as.numeric(.), na.rm = TRUE),
+sd = ~sd(as.numeric(.), na.rm = TRUE)),
+.names = "{.col}_{.fn}"))
+#Save the summary table as CSV
+write_csv(summary_table, here("output", "summary_table.csv"))
+message("Summary table saved: output/summary_table.csv")
+here::i_am("code/02_make_figure.R")
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(here)
+#Load the dataset
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Relabel diagnosis for readability
+data <- data %>%
+mutate(diagnosis = ifelse(diagnosis == "M", "Malignant", "Benign"))
+#Create boxplot
+p <- ggplot(data, aes(x = diagnosis, y = radius_mean, fill = diagnosis)) +
+geom_boxplot() +
+labs(
+title = "Distribution of Radius Mean by Diagnosis",
+x = "Diagnosis",
+y = "Radius Mean"
+) +
+theme_minimal()
+#Save the figure
+ggsave(here("output", "figure_boxplot.png"), plot = p, width = 7, height = 5, dpi = 300)
+message("Figure saved: output/figure_boxplot.png")
+here::i_am("code/03_render_report.R")
+library(rmarkdown)
+library(here)
+#Render the report from R Markdown to HTML
+render(
+input = here("report.Rmd"),
+output_file = here("report.html")
+)
+message("Report rendered successfully: report.html")
+file.exists(here::here("output", "figure_boxplot.png"))
+# safer path handling
+fig_path <- normalizePath(here::here("output", "figure_boxplot.png"))
+knitr::include_graphics(fig_path)
+#| fig.cap = "Summary statistics of tumor samples"
+kable(head(summary_table), caption = "Summary statistics of tumor samples")
+#! TO DO:
+#!   read summary_table from output directory
+summary_table <- read.csv(here::here("output", "summary_table.csv"))
+#! TO DO:
+#!   define figure path
+figure_path <- here::here("output", "figure_boxplot.png")
+#! TO DO:
+#!   add call to here::i_am
+library(here)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+here::i_am("report.Rmd")
+#! TO DO:
+#!   add call to here::i_am
+library(here)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+here::i_am("report.Rmd")
+#! TO DO:
+#!   read summary_table from output directory
+summary_table <- read.csv(here::here("output", "summary_table.csv"))
+#! TO DO:
+#!   define figure path
+figure_path <- here::here("output", "figure_boxplot.png")
+#| fig.cap = "Summary statistics of tumor samples"
+kable(head(summary_table), caption = "Summary statistics of tumor samples")
+# safer path handling
+fig_path <- normalizePath(here::here("output", "figure_boxplot.png"))
+knitr::include_graphics(fig_path)
+#! TO DO:
+#!   add call to here::i_am
+library(here)
+here::i_am("report.Rmd")
+#! TO DO:
+#!   add call to here::i_am
+library(here)
+here::i_am("report.Rmd")
+#! TO DO:
+#!   read summary_table from output directory
+summary_table <- read.csv(here::here("output", "summary_table.csv"))
+#! TO DO:
+#!   define figure path
+figure_path <- here::here("output", "figure_boxplot.png")
+#| fig.cap = "Summary statistics of tumor samples"
+kable(head(summary_table), caption = "Summary statistics of tumor samples")
+#! TO DO:
+#!   add call to here::i_am
+library(here)
+library(knitr)
+here::i_am("report.Rmd")
+#! TO DO:
+#!   read summary_table from output directory
+summary_table <- read.csv(here::here("output", "summary_table.csv"))
+#! TO DO:
+#!   define figure path
+figure_path <- here::here("output", "figure_boxplot.png")
+#| fig.cap = "Summary statistics of tumor samples"
+kable(head(summary_table), caption = "Summary statistics of tumor samples")
+here::i_am("code/03_render_report.R")
+library(rmarkdown)
+library(here)
+#Render the report from R Markdown to HTML
+render(
+input = here("report.Rmd"),
+output_file = here("report.html")
+)
+message("Report rendered successfully: report.html")
+#Read summary_table and figure
+summary_table <- read.csv(here::here("output", "summary_table.csv"))
+figure_path <- here::here("output", "figure_boxplot.png")
+kable(
+head(summary_table),
+caption = "Summary statistics of tumor samples"
+)
+knitr::include_graphics(here::here("output", "figure_boxplot.png"))
+---
+```{r, figure-boxplot, echo = FALSE}
+knitr::include_graphics(here::here("output", "figure_boxplot.png"))
+here::i_am("code/02_make_figure.R")
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(here)
+#Load the dataset
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Relabel diagnosis for readability
+data <- data %>%
+mutate(diagnosis = ifelse(Diagnosis == "M", "Malignant", "Benign"))
+here::i_am("code/02_make_figure.R")
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(here)
+#Load the dataset
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Relabel diagnosis for readability
+data <- data %>%
+mutate(diagnosis = ifelse(diagnosis == "M", "Malignant", "Benign"))
+#Create boxplot
+p <- ggplot(data, aes(x = diagnosis, y = radius_mean, fill = diagnosis)) +
+geom_boxplot() +
+labs(
+title = "Distribution of Radius Mean by Diagnosis",
+x = "Diagnosis",
+y = "Radius Mean"
+) +
+theme_minimal()
+#Save the figure
+ggsave(here("output", "figure_boxplot.png"), plot = p, width = 7, height = 5, dpi = 300)
+message("Figure saved: output/figure_boxplot.png")
+#! TO DO:
+#!   add call to here::i_am
+library(here)
+library(knitr)
+here::i_am("report.Rmd")
+#Read summary_table and figure
+summary_table <- read.csv(here::here("output", "summary_table.csv"))
+figure_path <- here::here("output", "figure_boxplot.png")
+kable(
+head(summary_table),
+caption = "Summary statistics of tumor samples"
+)
+knitr::include_graphics(here::here("output", "figure_boxplot.png"))
+library(dplyr)
+here::i_am("code/01_make_table.R")
+library(readr)
+library(dplyr)
+library(here)
+#Load data (CSV version)
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+summary_table <- data |>
+group_by(diagnosis) |>
+summarise(
+radius_mean_mean = mean(radius_mean, na.rm = TRUE),
+texture_mean_mean = mean(texture_mean, na.rm = TRUE),
+perimeter_mean_mean = mean(perimeter_mean, na.rm = TRUE),
+area_mean_mean = mean(area_mean, na.rm = TRUE),
+smoothness_mean_mean = mean(smoothness_mean, na.rm = TRUE)
+)
+write_csv(summary_table, here("output", "summary_table.csv"))
+message("Summary table saved: output/summary_table.csv")
+here::i_am("code/02_make_figure.R")
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(here)
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+here::i_am("code/02_make_figure.R")
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(here)
+#Load the dataset
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Make diagnosis for readability
+data <- data |>
+mutate(diagnosis = ifelse(diagnosis == "M", "Malignant", "Benign"))
+#Create boxplot
+p <- ggplot(data, aes(x = diagnosis, y = radius_mean, fill = diagnosis)) +
+geom_boxplot() +
+labs(
+title = "Distribution of Radius Mean by Diagnosis",
+x = "Diagnosis",
+y = "Radius Mean"
+) +
+theme_minimal()
+#Save the figure
+ggsave(
+filename = here("output", "figure_boxplot.png"),
+plot = p,
+width = 7,
+height = 5,
+dpi = 300
+)
+message("Figure saved: output/figure_boxplot.png")
+here::i_am("code/02_make_figure.R")
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(here)
+#Load the dataset
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Make diagnosis for readability
+data <- data |>
+mutate(diagnosis = ifelse(diagnosis == "M", "Malignant", "Benign"))
+#Create boxplot
+p <- ggplot(data, aes(x = diagnosis, y = radius_mean, fill = diagnosis)) +
+geom_boxplot() +
+labs(
+title = "Distribution of Radius Mean by Diagnosis",
+x = "Diagnosis",
+y = "Radius Mean",
+fill = "Diagnosis"
+) +
+theme_minimal()
+#Save the figure
+ggsave(
+filename = here("output", "figure_boxplot.png"),
+plot = p,
+width = 7,
+height = 5,
+dpi = 300
+)
+message("Figure saved: output/figure_boxplot.png")
+here::i_am("code/03_render_report.R")
+library(rmarkdown)
+library(here)
+#Render the report from R Markdown to HTML
+render(
+input = here("report.Rmd"),
+output_file = here("report.html")
+)
+message("Report rendered successfully: report.html")
+knitr::include_graphics(here::here("output", "figure_boxplot.png"))
+summary_table <- data |>
+group_by(Diagnosis = diagnosis) |>
+summarise(
+Radius = mean(radius_mean, na.rm = TRUE),
+Texture = mean(texture_mean, na.rm = TRUE),
+Perimeter = mean(perimeter_mean, na.rm = TRUE),
+Area = mean(area_mean, na.rm = TRUE),
+Smoothness = mean(smoothness_mean, na.rm = TRUE)
+)
+here::i_am("code/01_make_table.R")
+library(readr)
+library(dplyr)
+library(here)
+#Load data (CSV version)
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Create a summary table by diagnosis
+summary_table <- data |>
+group_by(Diagnosis = diagnosis) |>
+summarise(
+Radius = mean(radius_mean, na.rm = TRUE),
+Texture = mean(texture_mean, na.rm = TRUE),
+Perimeter = mean(perimeter_mean, na.rm = TRUE),
+Area = mean(area_mean, na.rm = TRUE),
+Smoothness = mean(smoothness_mean, na.rm = TRUE)
+)
+#Save the summary table as CSV
+write_csv(summary_table, here("output", "summary_table.csv"))
+message("Summary table saved: output/summary_table.csv")
+kable(
+head(summary_table),
+caption = "Summary statistics of tumor samples"
+)
+here::i_am("code/01_make_table.R")
+library(readr)
+library(dplyr)
+library(here)
+#Load data (CSV version)
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Create a summary table by diagnosis
+summary_table <- data |>
+group_by(Diagnosis = diagnosis) |>
+summarise(
+Radius = round(mean(radius_mean, na.rm = TRUE), 3),
+Texture = round(mean(texture_mean, na.rm = TRUE), 3),
+Perimeter = round(mean(perimeter_mean, na.rm = TRUE), 3),
+Area = round(mean(area_mean, na.rm = TRUE), 3),
+Smoothness = round(mean(smoothness_mean, na.rm = TRUE), 3),
+)
+#Save the summary table as CSV
+write_csv(summary_table, here("output", "summary_table.csv"))
+message("Summary table saved: output/summary_table.csv")
+kable(
+head(summary_table),
+caption = "Summary statistics of tumor samples"
+)
+here::i_am("code/02_make_figure.R")
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(here)
+#Load the dataset
+data <- read_csv(here("data", "breast_cancer_wisconsin.csv"), show_col_types = FALSE)
+#Make diagnosis for readability
+data <- data |>
+mutate(diagnosis = ifelse(diagnosis == "M", "Malignant", "Benign"))
+#Create boxplot
+p <- ggplot(data, aes(x = diagnosis, y = radius_mean, fill = diagnosis)) +
+geom_boxplot() +
+labs(
+title = "Distribution of Radius Mean by Diagnosis",
+x = "Diagnosis",
+y = "Radius Mean",
+fill = "Diagnosis"     #legend title
+) +
+theme_minimal()
+#Save the figure
+ggsave(
+filename = here("output", "figure_boxplot.png"),
+plot = p,
+width = 7,
+height = 5,
+dpi = 300
+)
+message("Figure saved: output/figure_boxplot.png")
+knitr::include_graphics(here::here("output", "figure_boxplot.png"))
+knitr::include_graphics(here::here("output", "figure_boxplot.png"))
+pwd
+setwd("~/Documents/samridhipurohit/Data550/collaborating_using_renv")
+setwd("~/Documents/samridhipurohit/Data550/collaborating_using_renv")
+install.packages("renv")
+renv::init()
+y
+setwd("~/Documents/Data550/collaborating_using_renv")
+getwd()
+renv::init()
+renv::init()
+y
+here::i_am(
+"code/01_make_output.R"
+)
+here::i_am(
+"code/01_make_output.R"
+)
+getwd()
+setwd("~/Documents/Data550/collaborating_using_renv")
+getwd()
+ls -a
+setwd("~/Documents/Data550/collaborating_using_renv")
+renv::status()
+getwd()               # should show your project folder
+renv::restore()       # installs wesanderson + dependencies
+q()
+cd ~/Documents/Data550/collaborating_using_renv
+ls
+getwd()
+getwd()
+getwd()
+setwd("~/Documents/Data550/collaborating_using_renv")
+getwd()
+renv::restore()
+cd ~/Documents/Data550/collaborating_using_renv
+getwd()
+install.packages("RColorBrewer")
+library(RColorBrewer)
+brewer.pal(4, "Set1")
+here::i_am(
+"report.Rmd"
+)
+#! TO DO:
+#!   read random_numbers1 from output directory
+random_numbers1 <- readRDS(
+here::here("output/random_numbers1.rds")
+)
+#! TO DO:
+#!   read random_numbers2 from output directory
+random_numbers2 <- readRDS(
+here::here("output/random_numbers2.rds")
+)
+#! TO DO:
+#!   read random_numbers3 from output directory
+random_numbers3 <- readRDS(
+here::here("output/random_numbers3.rds")
+)
+#| fig.cap = "Scatter plot of random numbers",
+#| echo = FALSE
+random_numbers3_quantiles <- quantile(
+random_numbers3,
+seq(0, 1, length = 5)
+)
+random_numbers3_breaks <- as.numeric(
+cut(
+random_numbers3,
+breaks = random_numbers3_quantiles,
+include.lowest = TRUE
+)
+)
+colors <- RColorBrewer::brewer.pal(4, "Set1")
+point_color <- colors[random_numbers3_breaks]
+plot(
+x = random_numbers1, y = random_numbers2,
+col = point_color,
+bty = "n", pch = 19
+)
+#| fig.cap = "Scatter plot of random numbers",
+#| echo = FALSE
+random_numbers3_quantiles <- quantile(
+random_numbers3,
+seq(0, 1, length = 5)
+)
+random_numbers3_breaks <- as.numeric(
+cut(
+random_numbers3,
+breaks = random_numbers3_quantiles,
+include.lowest = TRUE
+)
+)
+colors <- wesanderson::wes_palette("Zissou1", 4)
+point_color <- colors[random_numbers3_breaks]
+plot(
+x = random_numbers1, y = random_numbers2,
+col = point_color,
+bty = "n", pch = 19
+)
+#| fig.cap = "Scatter plot of random numbers",
+#| echo = FALSE
+random_numbers3_quantiles <- quantile(
+random_numbers3,
+seq(0, 1, length = 5)
+)
+random_numbers3_breaks <- as.numeric(
+cut(
+random_numbers3,
+breaks = random_numbers3_quantiles,
+include.lowest = TRUE
+)
+)
+colors <- RColorBrewer::brewer.pal(4, "Set1")
+point_color <- colors[random_numbers3_breaks]
+plot(
+x = random_numbers1, y = random_numbers2,
+col = point_color,
+bty = "n", pch = 19
+)
+install.packages("RColorBrewer")
+renv::snapshot()
+install.packages("RColorBrewer")
+renv::snapshot()
+q()
+cd ~/Documents/Data550/collaborating_using_renv
+install.packages("RColorBrewer")
+renv::snapshot()
+make
+getwd()
+getwd()
+setwd(~/Documents/Data550/collaborating_using_renv)
+setwd(Documents/Data550/collaborating_using_renv)
+setwd(Data550/collaborating_using_renv)
+setwd("~/Documents/Data550/collaborating_using_renv")
+getwd()
+library(RColorBrewer)
+getwd()
+renv::status()
+renv::snapshot()
